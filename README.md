@@ -13,10 +13,6 @@
 - Ensure you have NodeJS & NPM installed:
     - mac: `$ brew install node`
     - *nix: `$ apt-get install nodejs`
-- `git clone https://github.com/EntelekiaLearning/Website.git`
-- change to the project's root directory and run:
-```shell
-$ sudo ./install.sh
-$ ./run.sh
-```
-- Direct your browser to localhost:8000 to see `It works!` and localhost:5000/api/v1 to see `{"hello": "world!"}`
+- `$ git clone https://github.com/EntelekiaLearning/Website.git && cd Website`
+- `$ sudo ./install.sh && ./run.sh`
+..then open your browser to localhost:8000 to see `It works!` and localhost:5000/api/v1 to see `{"hello": "world!"}`
