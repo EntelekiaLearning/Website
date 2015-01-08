@@ -1,5 +1,6 @@
 client/app.min.css
 client/app.min.js
 client/app.pre.js
+client/app.pre.css
 node_modules
 client/node_modules
