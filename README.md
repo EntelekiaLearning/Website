@@ -1,6 +1,6 @@
 #Entelekia
 
-###One place to find local opportunities and digital resources to help you learn about anything.
+#####One place to find local opportunities and digital resources to help you learn about anything.
 
 ## Notes:
 - This project is very young and an MVP is currently in the works.
