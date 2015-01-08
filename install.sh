@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #@Note: run as admin
-#@Deps: Python, NodeJS, NPM
+#@Deps: Python, Python Pip, NodeJS, NPM
 
 echo '--------------------------------------';
 echo '--- Installing Server Dependencies ---';
