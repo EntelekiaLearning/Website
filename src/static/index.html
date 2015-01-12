@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+        <!-- Site Properities -->
+        <title>#{title}</title>
+
+        <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui/dist/semantic.css">
+        <link rel="stylesheet" type="text/css" href="globals.css">
+        <link rel="stylesheet" type="text/css" href="index.css">
+
+        <!-- Used with Tab History !-->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+
+        <script src="../dist/semantic.js"></script>		
+
+        <!-- Facebook Open Graph Tags !-->
+        <meta property="og:title" content="#{og_title}" />
+        <meta property="og:description" content="#{og_description}" />
+        <meta property="og:url" content="#{og_url}" />
+        <meta property="og:image" content="#{og_image}" />
+
+	</head> 
+<body>
+    <nav class="ui borderless menu navbar">
+        <div class="item">
+            <a href="#{home_url}">
+                <img class="tiny image" src="resources/images/learnpgh_logo.png">
+            </a>
+        </div>
+        <div class="item">
+            <h1>learn.pgh</h1>
+        </div>
+        <div id="navmenu" class="right menu">
+            <a href="#{explore_url}">
+                <div class="ui basic button">
+                Explore</div>
+            </a>
+            <a href="#{submit_url}">
+                <div class="ui basic button">
+                Submit</div>
+            </a>
+            <a href="https://medium.com/the-saxifrage-school/">
+                <div class="ui basic button">
+                Blog</div>
+            </a>
+        </div>
+    </nav>
+
+    <div class="ui grid">
+        <div class="row">
+            <div class="column" id="bridge">
+                <div class="ui huge message page grid center aligned">
+                    <h1 class="ui huge nobackground">Pittsburgh is yours to discover.</h1>
+                    <p>We are building one place to find all of the resources you need to learn about anything.</p>
+                    <a class="ui huge teal button">Explore!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui grid">
+            <div class="two wide column">
+                <div id="footer" class="ui left aligned segment">
+                    <a class="borderless messsage" href="https://www.github.com/entelekialearning/website">
+                        <i class="teal big github icon"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="twelve wide column">
+                <div id="footer" class="ui center aligned segment">
+                    <p id="footer-text">"We are all schoolmasters and our schoolhouse is the universe."</p>
+                </div>
+            </div>
+            <div class="two wide column">
+                <div id="footer" class="ui right aligned segment">
+                    <a class="" href="https://www.twitter.com/learnpgh">
+                        <i class="teal big twitter icon"></i>
+                    </a>
+                </div>
+            </div>  
+    </div>
+
+</body>
+</html>
