@@ -1,4 +1,3 @@
-var ExploreViewModel = require('./viewmodels/ExploreViewModel');
 var crossroads = require('crossroads');
 
 crossroads.addRoute('/', function(){
