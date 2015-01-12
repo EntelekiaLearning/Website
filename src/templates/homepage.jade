@@ -1,0 +1,43 @@
+doctype 5
+html
+  head
+    link(rel='stylesheet', href='app.min.css')
+    title #{title}
+  body
+    nav.ui.borderless.menu.navbar
+      .item
+        a(href='#{home_url}')
+          img.tiny.image(src='/images/learnpgh-logo.png')
+      .item
+        h1 learn.pgh
+      #navmenu.right.menu
+        a(href='#{explore_url}')
+          .ui.basic.button
+            | Explore
+        a(href='#{submit_url}')
+          .ui.basic.button
+            | Submit
+        a(href='https://medium.com/the-saxifrage-school/')
+          .ui.basic.button
+            | Blog
+    .ui.grid
+      .row
+        #bridge.column
+          .ui.huge.message.page.grid.center.aligned
+            h1.ui.huge.nobackground Pittsburgh is yours to discover.
+            p
+              | We are building one place to find all of the resources you need to learn about anything.
+            a.ui.huge.teal.button Explore!
+    .ui.grid
+      .two.wide.column
+        #footer.ui.left.aligned.segment
+          a.borderless.messsage(href='https://www.github.com/entelekialearning/website')
+            i.teal.big.github.icon
+      .twelve.wide.column
+        #footer.ui.center.aligned.segment
+          p#footer-text "We are all schoolmasters and our schoolhouse is the universe."
+      .two.wide.column
+        #footer.ui.right.aligned.segment
+          a(href='https://www.twitter.com/learnpgh')
+            i.teal.big.twitter.icon
+    script(src='app.min.js')

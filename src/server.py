@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from controllers.ExploreController import ExploreController
+from controllers.HomepageController import HomepageController
 
 app = Flask(__name__)
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
@@ -12,9 +12,9 @@ def static_proxy(path):
 def test():
   return jsonify(status=1)
 
-@app.route('/explore', methods=['GET'])
-def index():
-  return ExploreController().index()
+@app.route('/', methods=['GET'])
+def homepage():
+  return HomepageController().index()
 
 if __name__ == '__main__':
   app.run()

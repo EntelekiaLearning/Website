@@ -57,8 +57,8 @@ module.exports = function(grunt) {
       target: {
         files: {
           './app.min.css': [
-            './app.pre.css',
-            './node_modules/semantic-ui/dist/semantic.css'
+          './node_modules/semantic-ui/dist/semantic.css',
+            './app.pre.css'
           ]
         }
       }
