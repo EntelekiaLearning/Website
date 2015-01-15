@@ -1,6 +1,7 @@
-client/app.min.css
-client/app.min.js
-client/app.pre.js
-client/app.pre.css
+*.pyc
+src/static/app.min.css
+src/static/app.min.js
+src/static/app.pre.js
+src/static/app.pre.css
 node_modules
 client/node_modules
