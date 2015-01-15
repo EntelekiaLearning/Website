@@ -1,20 +1,19 @@
 doctype 5
 html
   head
-    link(rel='stylesheet', href='app.min.css')
-    title #{title}
+    include head.jade
   body
     nav.ui.borderless.menu.navbar
       .item
-        a(href='#{home_url}')
-          img.tiny.image(src='/images/learnpgh-logo.png')
+        a(href='#{homeUrl}')
+          img.tiny.image(src='#{baseImg}')
       .item
         h1 learn.pgh
       #navmenu.right.menu
-        a(href='#{explore_url}')
+        a(href='#{exploreUrl}')
           .ui.basic.button
             | Explore
-        a(href='#{submit_url}')
+        a(href='#{submitUrl}')
           .ui.basic.button
             | Submit
         a(href='https://medium.com/the-saxifrage-school/')
@@ -24,7 +23,7 @@ html
       .row
         #bridge.column
           .ui.huge.message.page.grid.center.aligned
-            h1.ui.huge.nobackground Pittsburgh is yours to discover.
+            h1.ui.huge.nobackground #{baseCity} is yours to discover.
             p
               | We are building one place to find all of the resources you need to learn about anything.
             a.ui.huge.teal.button Explore!
@@ -38,6 +37,6 @@ html
           p#footer-text "We are all schoolmasters and our schoolhouse is the universe."
       .two.wide.column
         #footer.ui.right.aligned.segment
-          a(href='https://www.twitter.com/learnpgh')
+          a(href='#{twitUrl}')
             i.teal.big.twitter.icon
-    script(src='app.min.js')
+    include foot.jade
