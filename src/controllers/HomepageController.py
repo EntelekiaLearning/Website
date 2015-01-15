@@ -16,6 +16,6 @@ class HomepageController:
 
     #one may override or add more
     #content to base conf values
-    vars["baseTitle"] += 'Home'
+    vars["title"] = vars["proj"] + " - Home"
 
     return render_template('homepage.jade', **vars)
