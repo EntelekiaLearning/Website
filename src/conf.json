@@ -1,0 +1,16 @@
+{
+    "tmplVars": {
+        "proj": "Entelekia",
+        "title": "Entelekia - ",
+        "homeUrl": "/",
+        "baseImg": "/images/learnpgh-logo.png",
+        "explorelUrl": "/",
+        "submitUrl": "/",
+        "city": "Pittsburgh",
+        "twitUrl": "https://www.twitter.com/learnpgh",
+        "ogTitle": "Entelekia",
+        "ogDesc": "One place to find all of the resources you need to learn about anything.",
+        "ogImg": "/images/learnpgh-logo.png",
+        "ogUrl": "http://www.entelekia.org"
+    }
+}
