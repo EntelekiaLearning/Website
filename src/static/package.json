@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "font-awesome": "^4.2.0",
     "crossroads": "^0.12.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "latest",
