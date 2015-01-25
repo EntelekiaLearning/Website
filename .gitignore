@@ -3,5 +3,4 @@ src/static/app.min.css
 src/static/app.min.js
 src/static/app.pre.js
 src/static/app.pre.css
-node_modules
-client/node_modules
+src/static/node_modules
