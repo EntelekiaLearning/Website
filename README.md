@@ -16,4 +16,4 @@
 - `$ git clone https://github.com/EntelekiaLearning/Website.git && cd Website`
 - `$ sudo ./install.sh && ./run.sh`
 
-...then open your browser to `localhost:5000/` to see the homepage (with `frond end works` from JavaScript in the console) and `localhost:5000/api/v1/test` to see `{"status": 1}`
+...then open your browser to `localhost:5000/` to see the homepage (with `front end works` from JavaScript in the console) and `localhost:5000/api/v1/test` to see `{"status": 1}`
