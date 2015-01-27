@@ -4,3 +4,4 @@ src/static/app.min.js
 src/static/app.pre.js
 src/static/app.pre.css
 src/static/node_modules
+src/static/app.min.js.map

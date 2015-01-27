@@ -35,6 +35,9 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      options: {
+        sourceMap: true
+      },
       build: {
         src: [
           './node_modules/jquery/dist/jquery.js',
