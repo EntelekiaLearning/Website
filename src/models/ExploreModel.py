@@ -1,6 +1,38 @@
 class ExploreModel:
   def selectTopics(self, uid):
-    if uid == "":
-      return (None, {"err": "No topic found"})
+    res = {}
+
+    if uid == "iw4madPIgn":
+      res["rows"] = [{
+        "uid": "AqJmuGPTOS",
+        "title": "Philosophy"
+      }]
+    elif uid == "AqJmuGPTOS":
+      res["rows"] = [{
+        "uid": "tdN2eOgzP8",
+        "title": "Existentialism"
+      }, {
+        "uid": "jHH0GP3zPj",
+        "title": "Ethics"
+      }, {
+        "uid": "6cWUTstiib",
+        "title": "Logic"
+      }]
+    elif uid == "tdN2eOgzP8":
+      res["rows"] = [{
+        "uid": "iTxRtBW011",
+        "title": "Intro to Nietzsche",
+        "course": True
+      }, {
+        "uid": "XUMEQd9Ash",
+        "title": "Absurdism",
+        "course": True
+      }, {
+        "uid": "PiKeHsRS2V",
+        "title": "History of Existentialism",
+        "course": True
+      }]
     else:
-      return ({"test": "data"}, None)
+      return (None, {"err": "No topic found"})
+
+    return (res, None)

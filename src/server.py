@@ -3,7 +3,6 @@ from controllers.HomepageController import HomepageController
 from controllers.ExploreController import ExploreController
 
 app = Flask(__name__)
-app.debug = True
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 
 @app.route('/<path:path>', methods=['GET'])
