@@ -1,7 +1,9 @@
 from flask import Flask, jsonify
 from controllers.HomepageController import HomepageController
+from controllers.ExploreController import ExploreController
 
 app = Flask(__name__)
+app.debug = True
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 
 @app.route('/<path:path>', methods=['GET'])
@@ -15,6 +17,15 @@ def test():
 @app.route('/', methods=['GET'])
 def homepage():
   return HomepageController().index()
+
+@app.route('/explore', methods=['GET'])
+def explore():
+  return ExploreController().index()
+
+@app.route('/api/v1/explore/topics/<uid>', methods=['GET'])
+def apiExploreTopics(uid):
+  code, res = ExploreController().getTopics(uid)
+  return jsonify(res), code
 
 if __name__ == '__main__':
   app.run()
