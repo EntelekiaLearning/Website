@@ -26,5 +26,10 @@ def apiExploreTopics(uid):
   code, res = ExploreController().getTopics(uid)
   return jsonify(res), code
 
+@app.route('/api/v1/explore/learninginfo/<uid>', methods=['GET'])
+def apiExploreLearningInfo(uid):
+  code, res = ExploreController().getLearningInfo(uid)
+  return jsonify(res), code
+
 if __name__ == '__main__':
   app.run()

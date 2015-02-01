@@ -19,6 +19,7 @@
     "grunt-contrib-stylus": "^0.20.0",
     "jquery": "^1.10.3",
     "knockout": "^3.2.0",
-    "semantic-ui": "^1.6.2"
+    "semantic-ui": "^1.6.2",
+    "lodash": "3.0.0"
   }
 }

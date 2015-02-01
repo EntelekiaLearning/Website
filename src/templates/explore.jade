@@ -5,20 +5,51 @@ html
   body
     nav.ui.borderless.menu.navbar
       .item
-        a(href='#{homeUrl}')
-          img.tiny.image(src='#{baseImg}')
+        a(href="#{homeUrl}")
+          img.tiny.image(src="#{baseImg}")
       .item
         h1 #{proj}
       #navmenu.right.menu
-        a(href='#{exploreUrl}')
+        a(href="#{exploreUrl}")
           .ui.basic.button
             | Explore
-        a(href='#{submitUrl}')
+        a(href="#{submitUrl}")
           .ui.basic.button
             | Submit
-        a(href='https://medium.com/the-saxifrage-school/')
+        a(href="https://medium.com/the-saxifrage-school/")
           .ui.basic.button
             | Blog
-    .topic-view
-    .learning-info-view
+    .explore-namespace
+      .ui.piled.segment
+        .topic-view
+          span(data-bind="foreach: topics")
+            span(data-bind="foreach: rows")
+              .ui.green.label(data-bind="text: title, click: $root.topicClick, css: { 'activeTopic': activeTopic === true }")
+            br
+        .learning-info-view.hide
+          span(data-bind="if: showLearningInfo")
+            .ui.two.column.centered.grid
+              .column
+                h3 Opportunities
+                span(data-bind="foreach: opportunities")
+                  .ui.purple.segment
+                    img.opportunity-img(data-bind="attr: {src: imgUrl}")
+                    h2.opportunity-title(data-bind="text: title")
+                    br.clear
+                    br
+                    p.opportunity-desc(data-bind="text: description")
+                    h4 locations:
+                    ul.opportunity-loc(data-bind="foreach: locations")
+                      li
+                        a(data-bind="text: $data")
+              .column
+                h3 Resources
+                span(data-bind="foreach: resources")
+                  .ui.green.segment
+                    img.resource-img(data-bind="attr: {src: imgUrl}")
+                    h2.resource-title(data-bind="text: title")
+                    br.clear
+                    br
+                    a.resource-desc(data-bind="text: url, attr: {href: url}")
+          br
     include foot.jade

@@ -18,9 +18,19 @@ class ExploreController:
     vars["title"] += "Explore"
 
     return render_template('explore.jade', **vars)
+
   def getTopics(self, uid):
     e = ExploreModel()
     res, err = e.selectTopics(uid)
+
+    if err != None:
+      return (500, err)
+
+    return (200, res)
+
+  def getLearningInfo(self, uid):
+    e = ExploreModel()
+    res, err = e.selectLearningInfo(uid)
 
     if err != None:
       return (500, err)
