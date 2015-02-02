@@ -6,8 +6,8 @@
 echo '--------------------------------------';
 echo '--- Installing Server Dependencies ---';
 echo '--------------------------------------';
-pip install Flask pyjade
-
+pip install pyjade==3.0.0
+pip install Flask==0.10.1
 echo '--------------------------------------';
 echo '--- Installing Client Dependencies ---';
 echo '--------------------------------------';
