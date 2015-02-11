@@ -30,7 +30,7 @@ html
           span(data-bind="if: showLearningInfo")
             .ui.two.column.centered.grid
               .column
-                h3 Opportunities
+                h3 Local Events
                 span(data-bind="foreach: opportunities")
                   .ui.purple.segment
                     img.opportunity-img(data-bind="attr: {src: imgUrl}")
@@ -43,7 +43,7 @@ html
                       li
                         a(data-bind="text: $data")
               .column
-                h3 Resources
+                h3 Digital Resources
                 span(data-bind="foreach: resources")
                   .ui.green.segment
                     img.resource-img(data-bind="attr: {src: imgUrl}")
