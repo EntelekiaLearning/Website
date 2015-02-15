@@ -11,7 +11,7 @@ crossroads.addRoute('/explore', function() {
     var e = new ExploreViewModel();
     e.init();
 
-    ko.applyBindings(e, $('explore-namespace')[0]);
+    ko.applyBindings(e, jQuery('explore-namespace')[0]);
 });
 
 crossroads.parse(window.location.pathname);

@@ -1,5 +1,7 @@
-var ExploreModel = require('../models/ExploreModel');
+var LearningModel = require('../models/LearningModel');
+var TopicModel = require('../models/TopicModel');
 var ko = require('knockout');
+var koTruncatedText = require('../libraries/TruncatedText');
 var jQuery = require('jquery');
 var _ = require('lodash');
 var conf = require('../conf');
@@ -26,6 +28,9 @@ module.exports = function() {
         self.getRelatedTopics({
             uid: 'iw4madPIgn'
         });
+
+        //Adds text truncation to Knockout for this ko instance
+        koTruncatedText.register(ko);
     };
 
     /**
@@ -76,21 +81,14 @@ module.exports = function() {
         //async series obj
         var series = {
             select: function(uid) {
-                return ExploreModel.selectRelatedTopics(uid);
+                return TopicModel.selectRelatedTopics(uid);
             },
-
-            //ko expects some additional properties on the
-            //frontend such as .course and .activeTopic
             sanitize: function(resData) {
-                _.each([resData], function(outerVal, outerKey) {
+                _.each([resData || []], function(outerVal, outerKey) {
                     _.each(outerVal.rows, function(innerVal, innerKey) {
-                        if (typeof(innerVal.activeTopic) === 'undefined') {
-                            innerVal.activeTopic = false;
-                        }
-
-                        if (typeof(innerVal.course) === 'undefined') {
-                            innerVal.course = false;
-                        }
+                        innerVal.title = typeof(innerVal.title) === 'undefined' ? '' : innerVal.title;
+                        innerVal.activeTopic = typeof(innerVal.activeTopic) === 'undefined' ? false : innerVal.activeTopic;
+                        innerVal.course = typeof(innerVal.course) === 'undefined' ? false : innerVal.course;
                     });
 
                     newDataSet.push(outerVal);
@@ -104,7 +102,7 @@ module.exports = function() {
 
                 if (typeof(err.responseText) !== 'undefined') {
                     var parsed = JSON.parse(err.responseText);
-                    msg = parsed.err;  
+                    msg = parsed.err;
                 } else {
                     msg = conf.DEF_ERR;
                 }
@@ -197,14 +195,47 @@ module.exports = function() {
      * @return {void}
      */
     self.getLearningInfo = function(ref) {
+        //base data
+        var newResourcesDataSet = [];
+        var newOpportuniesDataSet = [];
+
         //async series obj
         var series = {
             select: function(uid) {
-                return ExploreModel.selectLearningInfo(uid);
+                return LearningModel.selectLearningInfo(uid);
             },
-            commit: function(resData) {
-                self.commit(self.resources, resData.rows.resources || []);
-                self.commit(self.opportunities, resData.rows.opportunities || []);
+            sanitize: function(resData) {
+                var _sharedCheck = function(_ref) {
+                    _ref.title = typeof(_ref.title) === 'undefined' ? '' : _ref.title;
+                    _ref.desc = typeof(_ref.desc) === 'undefined' ? '' : _ref.desc;
+                    _ref.url = typeof(_ref.url) === 'undefined' ? '#' : _ref.url;
+                    _ref.author = typeof(_ref.author) === 'undefined' ? '' : _ref.author;
+                    _ref.addedBy = typeof(_ref.addedBy) === 'undefined' ? '' : _ref.addedBy;
+                    _ref.addedByUrl = typeof(_ref.addedByUrl) === 'undefined' ? '#' : _ref.addedByUrl;
+                    
+                    //TODO: validate with moment.js
+                    _ref.time = typeof(_ref.time) === 'undefined' ? '' : _ref.time;
+
+                    _ref.type = typeof(_ref.type) === 'undefined' ? '' : _ref.type;
+                    _ref.isPrivate = typeof(_ref.isPrivate) === 'undefined' ? false : _ref.isPrivate;
+                    _ref.isChildFriendly = typeof(_ref.isChildFriendly) === 'undefined' ? false : _ref.isChildFriendly;
+                    _ref.isNonFree = typeof(_ref.isNonFree) === 'undefined' ? false : _ref.isNonFree;
+                };
+
+                _.each(resData.rows.resources || [], function(val, key) {
+                    _sharedCheck(val);
+                });
+
+                _.each(resData.rows.opportunities || [], function(val, key) {
+                    _sharedCheck(val);
+                });
+
+                newResourcesDataSet = resData.rows.resources;
+                newOpportuniesDataSet = resData.rows.opportunities;
+            },
+            commit: function() {
+                self.commit(self.resources, newResourcesDataSet || []);
+                self.commit(self.opportunities, newOpportuniesDataSet || []);
                 self.learningInfoVisibility(true);
             },
             err: function(err) {
@@ -212,7 +243,7 @@ module.exports = function() {
 
                 if (typeof(err.responseText) !== 'undefined') {
                     var parsed = JSON.parse(err.responseText);
-                    msg = parsed.err;  
+                    msg = parsed.err;
                 } else {
                     msg = conf.DEF_ERR;
                 }
@@ -223,6 +254,7 @@ module.exports = function() {
         };
 
         series.select(ref.uid)
+            .then(series.sanitize)
             .then(series.commit)
             .fail(series.err);
     };
@@ -233,13 +265,11 @@ module.exports = function() {
      * @return {void}
      */
     self.learningInfoVisibility = function(status) {
-        var elem = jQuery('.learning-info-view');
+        var elem = jQuery('.ui.stackable.two.column');
         if (status === true) {
             elem.removeClass('hide');
-            self.commit(self.showLearningInfo, true);
         } else {
             elem.addClass('hide');
-            self.commit(self.showLearningInfo, false);
         }
     };
 };

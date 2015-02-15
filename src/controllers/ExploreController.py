@@ -8,7 +8,8 @@ parDir = os.path.dirname(curDir)
 sys.path.insert(0, parDir) 
 
 import conf
-from models.ExploreModel import ExploreModel
+from models.LearningModel import LearningModel
+from models.TopicModel import TopicModel
 
 class ExploreController:
   def index(self):
@@ -20,7 +21,7 @@ class ExploreController:
     return render_template('explore.jade', **vars)
 
   def getTopics(self, uid):
-    e = ExploreModel()
+    e = TopicModel()
     res, err = e.selectTopics(uid)
 
     if err != None:
@@ -29,7 +30,7 @@ class ExploreController:
     return (200, res)
 
   def getLearningInfo(self, uid):
-    e = ExploreModel()
+    e = LearningModel()
     res, err = e.selectLearningInfo(uid)
 
     if err != None:

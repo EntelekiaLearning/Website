@@ -20,36 +20,50 @@ html
           .ui.basic.button
             | Blog
     .explore-namespace
-      .ui.piled.segment
-        .topic-view
-          span(data-bind="foreach: topics")
-            span(data-bind="foreach: rows")
-              .ui.green.label(data-bind="text: title, click: $root.topicClick, css: { 'activeTopic': activeTopic === true }")
-            br
-        .learning-info-view.hide
-          span(data-bind="if: showLearningInfo")
-            .ui.two.column.centered.grid
-              .column
-                h3 Local Events
-                span(data-bind="foreach: opportunities")
-                  .ui.purple.segment
-                    img.opportunity-img(data-bind="attr: {src: imgUrl}")
-                    h2.opportunity-title(data-bind="text: title")
-                    br.clear
-                    br
-                    p.opportunity-desc(data-bind="text: description")
-                    h4 locations:
-                    ul.opportunity-loc(data-bind="foreach: locations")
-                      li
-                        a(data-bind="text: $data")
-              .column
-                h3 Digital Resources
-                span(data-bind="foreach: resources")
-                  .ui.green.segment
-                    img.resource-img(data-bind="attr: {src: imgUrl}")
-                    h2.resource-title(data-bind="text: title")
-                    br.clear
-                    br
-                    a.resource-desc(data-bind="text: url, attr: {href: url}")
+      .topic-view
+        span(data-bind="foreach: topics")
+          span(data-bind="foreach: rows")
+            .ui.green.label(data-bind="text: title, click: $root.topicClick, css: { 'activeTopic': activeTopic === true }")
           br
+      .ui.stackable.two.column.grid.hide
+        .column
+          h3 Local Events
+          div(data-bind="foreach: opportunities")
+            .ui.fluid.card
+              .content
+                .header
+                  img.ui.huge.floated.image(src='../static/images/learnpgh-logo.png')
+                  a(data-bind='text: title, attr: {href: url}')
+                  .meta
+                    span.right.floated.time(data-bind='text: time')
+                    span.category(data-bind='text: author')
+                .description(data-bind="truncatedText: desc, maxTextLength: 210")
+              .extra.content
+                .left.floated
+                  a(data-bind="text: addedBy, attr: {href: addedByUrl}")
+                .right.floated
+                  i.fa.fa-child(data-bind="visible: isChildFriendly")
+                  i.fa.fa-usd(data-bind="visible: isNonFree")
+                  i.fa.fa-lock(data-bind="visible: isPrivate")
+                  span.type(data-bind="text: type")
+        .column
+          h3 Digital Resources
+          div(data-bind="foreach: resources")
+            .ui.fluid.card
+              .content
+                .header
+                  img.ui.huge.floated.image(src='../static/images/learnpgh-logo.png')
+                  a(data-bind='text: title, attr: {href: url}')
+                  .meta
+                    span.right.floated.time(data-bind='text: time')
+                    span.category(data-bind='text: author')
+                .description(data-bind="truncatedText: desc, maxTextLength: 210")
+              .extra.content
+                .left.floated
+                  a(data-bind="text: addedBy, attr: {href: addedByUrl}")
+                .right.floated
+                  i.fa.fa-child(data-bind="visible: isChildFriendly")
+                  i.fa.fa-usd(data-bind="visible: isNonFree")
+                  i.fa.fa-lock(data-bind="visible: isPrivate")
+                  span.type(data-bind="text: type")
     include foot.jade
