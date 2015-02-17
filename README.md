@@ -18,7 +18,7 @@
 - Ensure you have Neo4j installed:
     - mac: `$ brew install neo4j && neo4j start`
     - *nix: follow instructions at http://neo4j.com/docs/stable/server-installation.html#linux-install
-    - win: `> choco install neo4j-community -Version 2.1.7'
+    - win: `> choco install neo4j-community -Version 2.1.7`
 - `$ git clone https://github.com/EntelekiaLearning/Website.git && cd Website`
 - `$ sudo ./install.sh && ./run.sh` (remove `sudo` if on Windows)
 
