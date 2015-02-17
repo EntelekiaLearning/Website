@@ -3,6 +3,7 @@ from controllers.HomepageController import HomepageController
 from controllers.ExploreController import ExploreController
 
 app = Flask(__name__)
+app.debug = True
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 
 @app.route('/<path:path>', methods=['GET'])
@@ -11,6 +12,12 @@ def static_proxy(path):
 
 @app.route('/api/v1/test', methods=['GET'])
 def test():
+  return jsonify(status=1)
+
+@app.route('/api/v1/db/test', methods=['GET'])
+def dbTest():
+  from neo4jrestclient.client import GraphDatabase
+  gdb = GraphDatabase("http://localhost:7474/db/data/")
   return jsonify(status=1)
 
 @app.route('/', methods=['GET'])
