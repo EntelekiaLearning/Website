@@ -13,8 +13,10 @@
     - win: `> choco install python pip`
 - Ensure you have NodeJS & NPM installed:
     - mac: `$ brew install node`
-    - *nix: `$ apt-get install nodejs`
+    - *nix: `$ apt-get install nodejs npm`
     - win: `> choco install nodejs.install`
+- Ensure you have bower installed:
+    - all: `npm install -g bower`
 - `$ git clone https://github.com/EntelekiaLearning/Website.git && cd Website`
 - `$ sudo ./install.sh && ./run.sh` (remove `sudo` if on Windows)
 
