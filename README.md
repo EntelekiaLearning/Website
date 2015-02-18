@@ -13,7 +13,7 @@
     - win: `> choco install python pip`
 - Ensure you have NodeJS & NPM installed:
     - mac: `$ brew install node`
-    - *nix: `$ apt-get install nodejs npm`
+    - *nix: `$ apt-get install nodejs nodejs-legacy npm`
     - win: `> choco install nodejs.install`
 - Ensure you have necessary npm modules installed:
     - all: `npm install -g bower grunt-cli`
