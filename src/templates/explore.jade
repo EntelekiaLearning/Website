@@ -27,7 +27,7 @@ html
           br
       .ui.stackable.two.column.grid.hide
         .column
-          h3 Local Events
+          h3.card-header Local Events
           div(data-bind="foreach: opportunities")
             .ui.fluid.card
               .content
@@ -47,7 +47,7 @@ html
                   i.fa.fa-lock(data-bind="visible: isPrivate")
                   span.type(data-bind="text: type")
         .column
-          h3 Digital Resources
+          h3.card-header Digital Resources
           div(data-bind="foreach: resources")
             .ui.fluid.card
               .content

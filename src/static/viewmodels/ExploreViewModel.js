@@ -249,8 +249,6 @@ module.exports = function() {
                 }
 
                 self.learningInfoVisibility(false);
-                self.commit(self.resources, []);
-                self.commit(self.opportunities, []);
                 alert(msg);
             }
         };
@@ -270,8 +268,12 @@ module.exports = function() {
         var elem = jQuery('.ui.stackable.two.column');
         if (status === true) {
             elem.removeClass('hide');
+            elem.find('.card-header').removeClass('hide');
         } else {
             elem.addClass('hide');
+            elem.find('.card-header').addClass('hide');
+            self.commit(self.resources, []);
+            self.commit(self.opportunities, []);
         }
     };
 };
