@@ -249,6 +249,8 @@ module.exports = function() {
                 }
 
                 self.learningInfoVisibility(false);
+                self.commit(self.resources, []);
+                self.commit(self.opportunities, []);
                 alert(msg);
             }
         };
