@@ -12,5 +12,10 @@
         "ogDesc": "One place to find all of the resources you need to learn about anything.",
         "ogImg": "/images/learnpgh-logo.png",
         "ogUrl": "http://www.entelekia.org"
+    },
+    "db": {
+        "url": "http://localhost:",
+        "port": 7474,
+        "dir": "/db/data/"
     }
 }

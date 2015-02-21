@@ -1,20 +1,22 @@
 from flask import Flask, jsonify
 from controllers.HomepageController import HomepageController
 from controllers.ExploreController import ExploreController
+from controllers.TestDatabaseBuilderController import TestDatabaseBuilderController
 import argparse
 
 parser = argparse.ArgumentParser(description='Entelekia')
-parser.add_argument('-t','--use_test_data', help='builds up initial test data', required=False)
+parser.add_argument('--devel', help='development mode', required=False)
 args = parser.parse_args()
 
 app = Flask(__name__)
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 
-if args.use_test_data != None:
-  #TODO should point to a test model that builds up the neo4j data
-  from neo4jrestclient.client import GraphDatabase
-  gdb = GraphDatabase("http://localhost:7474/db/data/")
-  print "building up graph db test data..."
+if args.devel != None and args.devel.lower() != "false":
+  print "enabling debug / live reload mode..."
+  app.debug = True
+
+  print "building up test data..."
+  TestDatabaseBuilderController().build()
 
 @app.route('/<path:path>', methods=['GET'])
 def static_proxy(path):
