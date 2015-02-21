@@ -1,0 +1,15 @@
+
+- resource
+	- refTopic
+	- onPathway
+
+- opportunity
+	- refTopic
+	- onPathway
+	- isLocated
+
+- venue
+
+- topic
+
+
