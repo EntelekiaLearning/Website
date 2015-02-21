@@ -4,4 +4,3 @@ class TestDatabaseBuilderController:
   def build(self):
     t = TestDatabaseBuilderModel()
     t.build()
-    

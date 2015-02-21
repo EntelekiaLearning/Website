@@ -3,6 +3,7 @@ from controllers.HomepageController import HomepageController
 from controllers.ExploreController import ExploreController
 from controllers.TestDatabaseBuilderController import TestDatabaseBuilderController
 import argparse
+import os
 
 parser = argparse.ArgumentParser(description='Entelekia')
 parser.add_argument('--devel', help='development mode', required=False)
@@ -10,13 +11,6 @@ args = parser.parse_args()
 
 app = Flask(__name__)
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
-
-if args.devel != None and args.devel.lower() != "false":
-  print "enabling debug / live reload mode..."
-  app.debug = True
-
-  print "building up test data..."
-  TestDatabaseBuilderController().build()
 
 @app.route('/<path:path>', methods=['GET'])
 def static_proxy(path):
@@ -44,5 +38,11 @@ def apiExploreLearningInfo(uid):
   code, res = ExploreController().getLearningInfo(uid)
   return jsonify(res), code
 
-if __name__ == '__main__':
+if args.devel != None and args.devel.lower() != "false":
+  print "building up test data..."
+  TestDatabaseBuilderController().build()
+
+  print "enabling debug / live reload mode..."
+  app.run(debug=True)
+else:
   app.run()

@@ -8,7 +8,7 @@ echo '--- Installing Server Dependencies ---';
 echo '--------------------------------------';
 pip install pyjade==3.0.0
 pip install Flask==0.10.1
-pip install neo4jrestclient==2.1.0
+pip install py2neo==2.0.4
 echo '--------------------------------------';
 echo '--- Installing Client Dependencies ---';
 echo '--------------------------------------';
