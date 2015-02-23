@@ -21,6 +21,7 @@
     - win: `> choco install neo4j-community -Version 2.1.7`
 - `$ git clone https://github.com/EntelekiaLearning/Website.git && cd Website`
 - `$ sudo ./install.sh && ./run.sh` (remove `sudo` if on Windows)
+...then open your browser to `localhost:5000/` to see the homepage (with `front end works` from JavaScript in the console) and `localhost:5000/api/v1/test` to see `{"status": 1}`
 
 ##Neo4j Tips:
 - If you wish to use pre-compiled test data, run `./run.sh --devel=true` (if you wish to update this default dataset, update `TestDatabaseBuilderModel.py`)
@@ -34,5 +35,3 @@ OPTIONAL MATCH
 DELETE 
     n, r
 ```
-
-...then open your browser to `localhost:5000/` to see the homepage (with `front end works` from JavaScript in the console) and `localhost:5000/api/v1/test` to see `{"status": 1}`
