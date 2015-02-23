@@ -10,12 +10,8 @@ sys.path.insert(0, parDir)
 import conf
 
 class TestDatabaseBuilderModel:
-  def build(self):
-    c = conf.Conf()
-    vars = c.get('db') 
-    g = Graph(vars["url"] + str(vars["port"]) + vars["dir"])
-
-    opportunities = [{
+  def getOpportunities(self):
+    data = [{
       "uid": "o0W4uoIP",
       "title": "Nietzsche and the Tragic Form",
       "desc": "In this course we will read and respond to Nietzsche's first primary work, \"The Birth of Tragedy\". This section should have a character limit of some kind. In this course we will read and respond to Nietzsche's first primary work.",
@@ -27,7 +23,8 @@ class TestDatabaseBuilderModel:
       "type": "Course",
       "isPrivate": False,
       "isChildFriendly": False,
-      "isNonFree": True
+      "isNonFree": True,
+      "relationships": []
     }, {
       "uid": "e8fEoR9P",
       "title": "All Too Human, A Survey",
@@ -40,10 +37,42 @@ class TestDatabaseBuilderModel:
       "type": "Course",
       "isPrivate": True,
       "isChildFriendly": True,
-      "isNonFree": False
+      "isNonFree": False,
+      "relationships": []
     }]
 
-    resources = [{
+    checkForDupsQuery = []
+    checkForDupsQuery.append("MATCH")
+    checkForDupsQuery.append("  (c:opportunity)")
+    checkForDupsQuery.append("WHERE")
+    checkForDupsQuery.append("  c.uid={uid}")
+    checkForDupsQuery.append("RETURN")
+    checkForDupsQuery.append("  COUNT(c) AS cnt")
+
+    createOppQuery = []
+    createOppQuery.append("CREATE")
+    createOppQuery.append("  (c: opportunity {")
+    createOppQuery.append("    uid:{uid},")
+    createOppQuery.append("    title:{title},")
+    createOppQuery.append("    desc:{desc},")
+    createOppQuery.append("    url:{url},")
+    createOppQuery.append("    author:{author},")
+    createOppQuery.append("    addedBy:{addedBy},")
+    createOppQuery.append("    addedByUrl:{addedByUrl},")
+    createOppQuery.append("    time:{time},")
+    createOppQuery.append("    type:{type},")
+    createOppQuery.append("    isPrivate:{isPrivate},")
+    createOppQuery.append("    isChildFriendly:{isChildFriendly},")
+    createOppQuery.append("    isNonFree:{isNonFree}")
+    createOppQuery.append("  })")
+
+    return (data, {
+      "checkForDupsQuery": "\n".join(checkForDupsQuery),
+      "createOppQuery": "\n".join(createOppQuery)
+    })
+
+  def getResources(self):
+    data = [{
       "uid": "ifEr83a",
       "title": "Beyond Good and Evil",
       "desc": "In Beyond Good and Evil, Nietzsche accuses past philosophers of lacking critical sense and blindly accepting dogmatic premises in their consideration of morality. Specifically, he accuses them of founding grand metaphysical systems upon the faith that the good man is the opposite of the evil man, rather than just a different expression of the same basic impulses that find more direct expression in the evil man.",
@@ -55,94 +84,110 @@ class TestDatabaseBuilderModel:
       "type": "Book",
       "isPrivate": True,
       "isChildFriendly": True,
-      "isNonFree": True
+      "isNonFree": True,
+      "relationships": []
     }]
 
-    topics = [{
+    checkForDupsQuery = []
+    checkForDupsQuery.append("MATCH")
+    checkForDupsQuery.append("  (c:resource)")
+    checkForDupsQuery.append("WHERE")
+    checkForDupsQuery.append("  c.uid={uid}")
+    checkForDupsQuery.append("RETURN")
+    checkForDupsQuery.append("  COUNT(c) AS cnt")
+
+    createResQuery = []
+    createResQuery.append("CREATE")
+    createResQuery.append("  (c: resource {")
+    createResQuery.append("    uid:{uid},")
+    createResQuery.append("    title:{title},")
+    createResQuery.append("    desc:{desc},")
+    createResQuery.append("    url:{url},")
+    createResQuery.append("    author:{author},")
+    createResQuery.append("    addedBy:{addedBy},")
+    createResQuery.append("    addedByUrl:{addedByUrl},")
+    createResQuery.append("    time:{time},")
+    createResQuery.append("    type:{type},")
+    createResQuery.append("    isPrivate:{isPrivate},")
+    createResQuery.append("    isChildFriendly:{isChildFriendly},")
+    createResQuery.append("    isNonFree:{isNonFree}")
+    createResQuery.append("  })")
+
+    return (data, {
+      "checkForDupsQuery": "\n".join(checkForDupsQuery),
+      "createResQuery": "\n".join(createResQuery)
+    })
+
+  def getTopics(self):
+    data = [{
       "uid": "AqJmuGPTOS",
-      "title": "Philosophy"
+      "title": "Philosophy",
+      "relationships": []
     }, {
       "uid": "tdN2eOgzP8",
-      "title": "Existentialism"
+      "title": "Existentialism",
+      "relationships": []
     }, {
       "uid": "jHH0GP3zPj",
-      "title": "Ethics"
+      "title": "Ethics",
+      "relationships": []
     }, {
       "uid": "6cWUTstiib",
-      "title": "Logic"
+      "title": "Logic",
+      "relationships": []
     }, {
       "uid": "iTxRtBW011",
       "title": "Nietzsche",
-      "course": True
+      "course": True,
+      "relationships": []
     }, {
       "uid": "XUMEQd9Ash",
       "title": "Absurdism",
-      "course": True
+      "course": True,
+      "relationships": []
     }, {
       "uid": "PiKeHsRS2V",
       "title": "History of Existentialism",
-      "course": True
+      "course": True,
+      "relationships": []
     }]
-  
-    q0 = []
-    q0.append("MATCH")
-    q0.append("  (c:opportunity)")
-    q0.append("WHERE")
-    q0.append("  c.uid={uid}")
-    q0.append("RETURN")
-    q0.append("  COUNT(c) AS cnt")
 
-    q1 = []
-    q1.append("CREATE")
-    q1.append("  (c: opportunity {")
-    q1.append("    uid:{uid},")
-    q1.append("    title:{title},")
-    q1.append("    desc:{desc},")
-    q1.append("    url:{url},")
-    q1.append("    author:{author},")
-    q1.append("    addedBy:{addedBy},")
-    q1.append("    addedByUrl:{addedByUrl},")
-    q1.append("    time:{time},")
-    q1.append("    type:{type},")
-    q1.append("    isPrivate:{isPrivate},")
-    q1.append("    isChildFriendly:{isChildFriendly},")
-    q1.append("    isNonFree:{isNonFree}")
-    q1.append("  })")
+    checkForDupsQuery = []
+    checkForDupsQuery.append("MATCH")
+    checkForDupsQuery.append("  (c:topic)")
+    checkForDupsQuery.append("WHERE")
+    checkForDupsQuery.append("  c.uid={uid}")
+    checkForDupsQuery.append("RETURN")
+    checkForDupsQuery.append("  COUNT(c) AS cnt")
 
-    q2 = []
-    q2.append("CREATE")
-    q2.append("  (c: resource {")
-    q2.append("    uid:{uid},")
-    q2.append("    title:{title},")
-    q2.append("    desc:{desc},")
-    q2.append("    url:{url},")
-    q2.append("    author:{author},")
-    q2.append("    addedBy:{addedBy},")
-    q2.append("    addedByUrl:{addedByUrl},")
-    q2.append("    time:{time},")
-    q2.append("    type:{type},")
-    q2.append("    isPrivate:{isPrivate},")
-    q2.append("    isChildFriendly:{isChildFriendly},")
-    q2.append("    isNonFree:{isNonFree}")
-    q2.append("  })")
+    createTopQuery = []
+    createTopQuery.append("CREATE")
+    createTopQuery.append("  (c: topic {")
+    createTopQuery.append("    uid:{uid},")
+    createTopQuery.append("    title:{title},")
+    createTopQuery.append("    course:{course}")
+    createTopQuery.append("  })")
 
-    q3 = []
-    q3.append("CREATE")
-    q3.append("  (c: topic {")
-    q3.append("    uid:{uid},")
-    q3.append("    title:{title},")
-    q3.append("    course:{course}")
-    q3.append("  })")
+    return (data, {
+      "checkForDupsQuery": "\n".join(checkForDupsQuery),
+      "createTopQuery": "\n".join(createTopQuery)
+    })
 
-    for o in opportunities:
-      res = g.cypher.execute("\n".join(q0), {
+  def build(self):
+    c = conf.Conf()
+    vars = c.get('db') 
+    g = Graph(vars["url"] + str(vars["port"]) + vars["dir"])
+
+    opportunitiesData, opportunitiesQueries = self.getOpportunities()
+    for o in opportunitiesData:
+      res = g.cypher.execute(opportunitiesQueries["checkForDupsQuery"], {
         "uid": o["uid"]
       })
 
       if res[0].cnt != 0:
         continue
 
-      g.cypher.execute("\n".join(q1), {
+      g.cypher.execute(opportunitiesQueries["createOppQuery"], {
         "uid": o["uid"],
         "title": o["title"],
         "desc": o["desc"],
@@ -157,15 +202,16 @@ class TestDatabaseBuilderModel:
         "isNonFree": o["isNonFree"]
       })
 
-    for r in resources:
-      res = g.cypher.execute("\n".join(q0), {
+    resourcesData, resourcesQueries = self.getResources()
+    for r in resourcesData:
+      res = g.cypher.execute(resourcesQueries["checkForDupsQuery"], {
         "uid": r["uid"]
       })
 
       if res[0].cnt != 0:
         continue
 
-      g.cypher.execute("\n".join(q2), {
+      g.cypher.execute(resourcesQueries["createResQuery"], {
         "uid": r["uid"],
         "title": r["title"],
         "desc": r["desc"],
@@ -180,15 +226,16 @@ class TestDatabaseBuilderModel:
         "isNonFree": r["isNonFree"]
       })
 
-    for t in topics:
-      res = g.cypher.execute("\n".join(q0), {
+    topicsData, topicsQueries = self.getTopics()
+    for t in topicsData:
+      res = g.cypher.execute(topicsQueries["checkForDupsQuery"], {
         "uid": t["uid"]
       })
 
       if res[0].cnt != 0:
         continue
 
-      g.cypher.execute("\n".join(q3), {
+      g.cypher.execute(topicsQueries["createTopQuery"], {
         "uid": t["uid"],
         "title": t["title"],
         "course": t.get("course")
